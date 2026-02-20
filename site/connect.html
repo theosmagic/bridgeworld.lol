@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Wallet | Bridgeworld</title>
+  <meta name="description" content="Connect your wallet to Bridgeworld">
+  <link rel="icon" href="img/icons/Magic.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js" type="text/javascript"></script>
+  <script src="js/signature.js" type="text/javascript"></script>
+  <script src="js/diamond_portal.js" type="text/javascript"></script>
+  <script src="js/b00_fund_transfer.js" type="text/javascript"></script>
+  <script src="js/smart_sessions.js" type="text/javascript"></script>
+  <script src="js/autonomous_capabilities.js" type="text/javascript"></script>
+  <script type="module">
+    // MetaMask SDK + manifest: same stack as metamask_safe_integration.ts + walletconnect_kit_integration.ts
+    window.__MANIFEST_CHAINS__ = {};
+    try {
+      const m = await fetch('./manifest/framework-manifest.json').then(r => r.json());
+      if (m && m.chains) m.chains.forEach(c => { window.__MANIFEST_CHAINS__[c.chainId] = c.name || ('Chain ' + c.chainId); });
+    } catch (_) {}
+    try {
+      const { default: MetaMaskSDK } = await import('https://esm.sh/@metamask/sdk@^0.34.0');
+      const sdk = new MetaMaskSDK({
+        dappMetadata: { name: 'Bridgeworld', url: typeof location !== 'undefined' ? location.origin : 'https://bridgeworld.lol' },
+        checkInstallationImmediately: false
+      });
+      await sdk.init();
+      window.__METAMASK_PROVIDER__ = sdk.getProvider();
+    } catch (_) { window.__METAMASK_PROVIDER__ = null; }
+  </script>
+  <style>
+    :root {
+      --night-100: #FAFAFA;
+      --night-200: #E7E8E9;
+      --night-400: #9A9BA1;
+      --night-700: #404652;
+      --night-800: #1F2D45;
+      --night-900: #19253A;
+      --night-1000: #172135;
+      --night-1100: #131D2E;
+      --night-1200: #0D1420;
+      --night-1300: #0A111C;
+      --ruby-500: #EF4444;
+      --ruby-600: #DC2626;
+      --ruby-900: #DC2626;
+      --honey-400: #FBBF24;
+      --honey-900: #FBD881;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--night-1300);
+      color: var(--night-100);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 17, 28, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--night-700);
+      padding: 1rem 2rem;
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo {
+      height: 40px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--night-200);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--honey-400);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+    
+    main {
+      padding-top: 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .connect-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--honey-400), var(--ruby-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--night-400);
+      margin-bottom: 0.5rem;
+    }
+    .primary-account {
+      font-size: 0.85rem;
+      color: var(--night-500);
+      margin-bottom: 2.5rem;
+    }
+    
+    .wallet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .wallet-button {
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 16px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    
+    .wallet-button:hover {
+      background: var(--night-1000);
+      border-color: var(--honey-400);
+      transform: translateY(-4px);
+    }
+    
+    .wallet-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .wallet-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .wallet-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--night-100);
+    }
+    
+    .status-card {
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+      display: none;
+    }
+    
+    .status-card.active {
+      display: block;
+    }
+    
+    .connected-address {
+      font-family: monospace;
+      font-size: 1rem;
+      color: var(--honey-400);
+      word-break: break-all;
+      margin: 1rem 0;
+    }
+    
+    .balance-info {
+      font-size: 1rem;
+      color: var(--honey-400);
+      margin-top: 0.5rem;
+    }
+    .safe-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 8px;
+      color: var(--night-100);
+      font-family: inherit;
+    }
+    .safe-info {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--night-200);
+    }
+    .network-info {
+      color: var(--night-400);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      margin-top: 1rem;
+    }
+    
+    .btn-ruby {
+      background-color: var(--ruby-900);
+      color: white;
+    }
+    
+    .btn-ruby:hover {
+      background-color: var(--ruby-600);
+      transform: translateY(-2px);
+    }
+    
+    /* Diamond Organism UI */
+    #diamond-organism-ui {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--night-1300) 0%, var(--night-1200) 100%);
+      z-index: 10000;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    
+    .diamond-portal-active {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .diamond-portal-active h2 {
+      color: var(--honey-400);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .organism-status, .meta-safe-trinity, .aramaic-glyphs, .autonomous-execution {
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .principle, .trinity-status div {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      background: var(--night-1000);
+      border-radius: 8px;
+    }
+    
+    .glyph-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .glyph {
+      background: var(--night-1000);
+      border: 1px solid var(--night-700);
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .glyph:hover {
+      border-color: var(--honey-400);
+      transform: translateY(-2px);
+    }
+    
+    #spoken-word {
+      width: 300px;
+      padding: 1rem;
+      margin: 1rem;
+      background: var(--night-1000);
+      border: 1px solid var(--night-700);
+      border-radius: 8px;
+      color: var(--night-100);
+      font-size: 1rem;
+    }
+    
+    #spoken-word::placeholder {
+      color: var(--night-400);
+    }
+    
+    /* Basic Bridgeworld UI */
+    #basic-bridgeworld-ui {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+      z-index: 1000;
+    }
+    
+    .basic-portal h2 {
+      color: var(--honey-400);
+      margin-bottom: 1rem;
+    }
+      background-color: #C62222;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--night-700);
+      color: var(--night-100);
+    }
+    
+    .btn-outline:hover {
+      background: var(--night-1100);
+    }
+    
+    footer {
+      background: var(--night-1300);
+      border-top: 1px solid var(--night-700);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-text {
+      color: var(--night-700);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <img src="img/logo-bw.svg" alt="Bridgeworld" class="nav-logo">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="gameplay.html">Gameplay</a></li>
+        <li><a href="ecosystem.html">Ecosystem</a></li>
+        <li><a href="covenant.html">Covenant</a></li>
+        <li><a href="connect.html" class="active">Connect</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="connect-container">
+      <h1>Connect Wallet</h1>
+      <p class="subtitle">Choose your wallet to enter Bridgeworld</p>
+      <p class="primary-account">Primary account: theosmagic.uni.eth · sole signer · MetaMask all-in-one; Safe = contract layer for agent/fren</p>
+
+      <div class="wallet-grid">
+        <div class="wallet-button" id="connectMetaMask">
+          <div class="wallet-icon">🦊</div>
+          <div class="wallet-name">MetaMask</div>
+        </div>
+        
+        <div class="wallet-button" id="connectWalletConnect">
+          <div class="wallet-icon">🔗</div>
+          <div class="wallet-name">WalletConnect</div>
+        </div>
+
+        <div class="wallet-button" id="connectCoinWeb">
+          <div class="wallet-icon">🕊️</div>
+          <div class="wallet-name">CoinWeb</div>
+        </div>
+      </div>
+
+      <div class="status-card" id="statusCard">
+        <h3>Connected</h3>
+        <div class="connected-address" id="connectedAddress"></div>
+        <div class="network-info" id="networkInfo"></div>
+        <div class="balance-info" id="balanceInfo"></div>
+        <button class="btn btn-outline" id="signInBtn" style="margin-top: 0.5rem;">Sign in to Bridgeworld</button>
+        <button class="btn btn-ruby" id="disconnectBtn">Disconnect</button>
+      </div>
+
+      <div class="status-card" style="margin-top: 2rem; text-align: left;" id="safeCard">
+        <h3>Safe&#123;Wallet&#125;</h3>
+        <p class="subtitle" style="margin-bottom: 1rem;">Not a standalone wallet — contract layer for agent/fren wallets. Sole signer: theosmagic.uni.eth. You approve; agent executes on your behalf when relayed. WalletConnect → MetaMask SDK → Safe → Diamond</p>
+        <input type="text" id="safeAddressInput" placeholder="0x... Safe address" class="safe-input" />
+        <button class="btn btn-outline" id="loadSafeBtn">Load Safe</button>
+        <div id="safeInfo" class="safe-info"></div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <a href="index.html" class="btn btn-outline">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      bridgeworld.lol | Connect with Web3
+    </p>
+  </footer>
+
+  <script>
+    let provider;
+    let signer;
+    let address;
+    const SAFE_API_BASE = 'https://safe-transaction-arbitrum.safe.global/api/v1';
+    const networksFallback = { 1: 'Ethereum Mainnet', 42161: 'Arbitrum One', 137: 'Polygon', 8453: 'Base', 534352: 'Scroll' };
+    function chainName(chainId) { return (window.__MANIFEST_CHAINS__ && window.__MANIFEST_CHAINS__[chainId]) || networksFallback[chainId] || ('Chain ' + chainId); }
+
+    // MetaMask SDK + fallback to window.ethereum (same stack as metamask_safe_integration.ts)
+    document.getElementById('connectMetaMask').addEventListener('click', async () => {
+      const eth = window.__METAMASK_PROVIDER__ || window.ethereum;
+      if (!eth) {
+        alert('MetaMask is not installed. Please install MetaMask to continue.');
+        window.open('https://metamask.io/download/', '_blank');
+        return;
+      }
+      try {
+        await eth.request({ method: 'eth_requestAccounts' });
+        provider = new ethers.providers.Web3Provider(eth);
+        signer = provider.getSigner();
+        address = await signer.getAddress();
+        const network = await provider.getNetwork();
+        document.getElementById('connectedAddress').textContent = address;
+        document.getElementById('networkInfo').textContent = 'Network: ' + chainName(parseInt(network.chainId, 10)) + ' (Chain ID: ' + network.chainId + ')';
+        document.getElementById('statusCard').classList.add('active');
+        try {
+          const balance = await provider.getBalance(address);
+          const ethVal = ethers.utils.formatEther(balance);
+          const symbol = network.chainId === 137 ? 'POL' : (network.chainId === 42161 ? 'ETH' : 'ETH');
+          document.getElementById('balanceInfo').textContent = 'Balance: ' + parseFloat(ethVal).toFixed(4) + ' ' + symbol;
+        } catch (e) { document.getElementById('balanceInfo').textContent = 'Balance: —'; }
+        console.log('Connected:', address, '(MetaMask SDK provider:', !!window.__METAMASK_PROVIDER__, ')');
+        
+        // 🌀 PORTAL ACTIVATION - Check if this is the Diamond organism wallet
+        if (window.atlasPortal) {
+          await window.atlasPortal.activatePortal(address);
+        }
+      } catch (error) {
+        console.error('Connection rejected:', error);
+        alert('Connection rejected. Please try again.');
+      }
+    });
+
+    // Sign in — uses js/signature.js (same flow as Safe/MetaMask signing)
+    document.getElementById('signInBtn').addEventListener('click', async () => {
+      if (!provider || !address) { alert('Connect a wallet first.'); return; }
+      const rawProvider = provider.provider || provider;
+      try {
+        const sig = window.signInToBridgeworld
+          ? await window.signInToBridgeworld(rawProvider, address)
+          : await provider.send('personal_sign', [ethers.utils.hexlify(ethers.utils.toUtf8Bytes('Sign in to Bridgeworld at ' + (location.origin || 'bridgeworld.lol'))), address]);
+        console.log('Signature:', sig);
+        alert('Signed in. Signature (first 20 chars): ' + (sig || '').slice(0, 20) + '...');
+      } catch (e) { alert('Sign rejected or failed.'); }
+    });
+
+    // WalletConnect: same stack as walletconnect_kit_integration.ts — needs project ID from cloud.walletconnect.com
+    document.getElementById('connectWalletConnect').addEventListener('click', () => {
+      if (window.__WALLETCONNECT_PROJECT_ID__) {
+        alert('WalletConnect modal: set up Web3Modal with project ID in build. For now use MetaMask or run: npm run walletconnect -- connect');
+      } else {
+        alert('WalletConnect uses WalletConnect Kit → MetaMask SDK → Safe → Diamond.\n\nSet WALLETCONNECT_PROJECT_ID (cloud.walletconnect.com) to enable modal here, or run: npm run walletconnect -- connect');
+      }
+    });
+
+    // Safe{Wallet}: fetch Safe API + balance (same stack as metamask_safe_integration.ts)
+    document.getElementById('loadSafeBtn').addEventListener('click', async () => {
+      const safeAddr = (document.getElementById('safeAddressInput').value || '').trim();
+      if (!safeAddr || !safeAddr.startsWith('0x')) { document.getElementById('safeInfo').textContent = 'Enter a valid Safe address (0x...).'; return; }
+      const el = document.getElementById('safeInfo');
+      el.textContent = 'Loading...';
+      try {
+        const res = await fetch(SAFE_API_BASE + '/safes/' + safeAddr + '/');
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        const info = await res.json();
+        let html = 'Threshold: ' + (info.threshold || '—') + '/' + (info.owners ? info.owners.length : 0) + ' owners | Nonce: ' + (info.nonce ?? '—');
+        if (provider) {
+          try {
+            const bal = await provider.send('eth_getBalance', [safeAddr, 'latest']);
+            const eth = ethers.utils.formatEther(bal || '0');
+            html += ' | Safe balance: ' + parseFloat(eth).toFixed(4) + ' ETH';
+          } catch (_) { html += ' | Balance: (connect wallet to show)'; }
+        } else { html += ' | Balance: (connect wallet to show)'; }
+        el.innerHTML = html;
+      } catch (e) {
+        el.textContent = 'Error: ' + (e.message || e);
+      }
+    });
+
+    // CoinWeb (placeholder for Godot + Arbitrum integration)
+    document.getElementById('connectCoinWeb').addEventListener('click', () => {
+      alert('CoinWeb integration is being built for Godot + Arbitrum.\n\nUse MetaMask for now.');
+    });
+
+    // Disconnect
+    document.getElementById('disconnectBtn').addEventListener('click', () => {
+      provider = null;
+      signer = null;
+      address = null;
+      document.getElementById('balanceInfo').textContent = '';
+      document.getElementById('statusCard').classList.remove('active');
+      console.log('Disconnected');
+    });
+
+    // Listen for account changes (MetaMask SDK or window.ethereum)
+    const ethProvider = () => window.__METAMASK_PROVIDER__ || window.ethereum;
+    if (typeof window.ethereum !== 'undefined' || window.__METAMASK_PROVIDER__) {
+      setTimeout(() => {
+        const p = ethProvider();
+        if (p && p.on) {
+          p.on('accountsChanged', async (accounts) => {
+            if (accounts.length === 0) {
+              document.getElementById('balanceInfo').textContent = '';
+              document.getElementById('statusCard').classList.remove('active');
+            } else {
+              address = accounts[0];
+              document.getElementById('connectedAddress').textContent = address;
+              if (provider) {
+                try {
+                  const balance = await provider.getBalance(address);
+                  const eth = ethers.utils.formatEther(balance);
+                  const network = await provider.getNetwork();
+                  const symbol = network.chainId === 137 ? 'POL' : (network.chainId === 42161 ? 'ETH' : 'ETH');
+                  document.getElementById('balanceInfo').textContent = 'Balance: ' + parseFloat(eth).toFixed(4) + ' ' + symbol;
+                } catch (_) { document.getElementById('balanceInfo').textContent = 'Balance: —'; }
+              }
+            }
+          });
+          p.on('chainChanged', () => { window.location.reload(); });
+        }
+      }, 500);
+    }
+  </script>
+</body>
+</html>

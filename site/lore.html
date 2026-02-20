@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Old Tomes - Bridgeworld Lore | Treasure Ecosystem</title>
+  <meta name="description" content="The Old Tomes of Bridgeworld - Discover the origins, legions, and mysteries of this ancient world. Read the complete lore including Foundations, Origins, Atlas Mine, Legions, and Harvesters.">
+  <meta name="keywords" content="Bridgeworld lore, Bridgeworld story, Atlas Mine, Legions, Harvesters, Treasure lore, game lore">
+  <meta name="author" content="Bridgeworld">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bridgeworld.lol/lore.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://bridgeworld.lol/lore.html">
+  <meta property="og:title" content="The Old Tomes - Bridgeworld Lore">
+  <meta property="og:description" content="Discover the origins, legions, and mysteries of Bridgeworld. Chronicles from the Archives including Foundations, Origins, Atlas Mine, Legions, and Harvesters.">
+  <meta property="og:image" content="https://bridgeworld.lol/img/bridgeworld-legions.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Bridgeworld">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://bridgeworld.lol/lore.html">
+  <meta name="twitter:title" content="The Old Tomes - Bridgeworld Lore">
+  <meta name="twitter:description" content="Discover the origins, legions, and mysteries of Bridgeworld.">
+  <meta name="twitter:image" content="https://bridgeworld.lol/img/bridgeworld-legions.jpeg">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="img/icons/Magic.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icons/Magic.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --night-100: #FAFAFA;
+      --night-200: #E7E8E9;
+      --night-400: #9A9BA1;
+      --night-700: #404652;
+      --night-1100: #131D2E;
+      --night-1200: #0D1420;
+      --night-1300: #0A111C;
+      --ruby-600: #DC2626;
+      --honey-400: #FBBF24;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--night-1300);
+      color: var(--night-100);
+      line-height: 1.8;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 17, 28, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--night-700);
+      padding: 1rem 2rem;
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo { height: 40px; }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--night-200);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover { color: var(--honey-400); }
+    
+    @media (max-width: 768px) { .nav-links { display: none; } }
+    
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, var(--honey-400), var(--ruby-600));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--night-400);
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    
+    .toc {
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .toc h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--honey-400);
+    }
+    
+    .toc ul {
+      list-style: none;
+    }
+    
+    .toc li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .toc a {
+      color: var(--night-200);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .toc a:hover {
+      color: var(--honey-400);
+    }
+    
+    .chapter {
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--night-700);
+    }
+    
+    .chapter:last-child {
+      border-bottom: none;
+    }
+    
+    .chapter h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--ruby-600);
+    }
+    
+    .chapter-author {
+      font-size: 0.875rem;
+      color: var(--night-400);
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    
+    .chapter p {
+      color: var(--night-200);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .chapter .lore-text {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.2rem;
+      line-height: 2;
+    }
+    
+    blockquote {
+      border-left: 4px solid var(--honey-400);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--honey-400);
+      font-size: 1.2rem;
+    }
+    
+    .dialogue {
+      background: var(--night-1200);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+    }
+    
+    .dialogue p {
+      margin-bottom: 1rem;
+      color: var(--night-100);
+    }
+    
+    .dialogue p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--honey-400);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      background: var(--night-1300);
+      border-top: 1px solid var(--night-700);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-text {
+      color: var(--night-700);
+      font-size: 0.875rem;
+    }
+    
+    .footer-text a {
+      color: var(--honey-400);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html"><img src="img/logo-bw.svg" alt="Bridgeworld" class="nav-logo"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#atlas">Atlas Mine</a></li>
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="gameplay.html">Gameplay</a></li>
+        <li><a href="https://discord.gg/treasuredao" target="_blank">Discord</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>The Old Tomes</h1>
+    <p class="subtitle">Chronicles of Bridgeworld - From the Archives</p>
+    
+    <div class="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#foundations">I. Foundations</a></li>
+        <li><a href="#origins">II. Origins</a></li>
+        <li><a href="#atlas-mine">III. The Atlas Mine</a></li>
+        <li><a href="#legions">IV. The Legions</a></li>
+        <li><a href="#harvesters">V. The Harvesters</a></li>
+      </ul>
+    </div>
+
+    <article class="chapter" id="foundations">
+      <h2>I. Foundations</h2>
+      <p class="chapter-author">By Rickard</p>
+      
+      <div class="lore-text">
+        <p>
+          Long before the first legion arrived there was an ancient advanced civilization here. They built the original harvesters which drew Magic from the depths of the Atlas Mine. No one knows where they've gone or how they were destroyed. Some relics remain of their civilisation along with relics left by those who have stumbled through portals over the years and found themselves marooned here.
+        </p>
+        
+        <p>
+          Portal events are the spontaneous appearance of a portal, which drop something from a different world/universe/dimension into Bridgeworld. They occur with varying frequency and of varying scale. Living creatures who come to Bridgeworld through portal events lose their memories and identity, they become forced to survive with the instincts and skills that they have.
+        </p>
+        
+        <p>
+          A cataclysmic event in the past nearly tore the continent in half - this caused the Atlas Rift. It's unknown if the harvesters were built before or after the event spawning the rift, and therefore no one knows if the harvesters were the cause or whether they were the response to the event.
+        </p>
+        
+        <p>
+          The magic which is being extracted from the Atlas Rift is imbued with primarily six different powers: <strong>fire, earth, water, wind, light and darkness</strong>. This suggests that each of the harvesters were built specifically to extract magic from one of these elements. Magic, it seems, can be fused with other elements as well: toxic magic with its greenish glow, blood imbued magic with its deep red color, and magmatic magic - a deep orange slow flowing liquid.
+        </p>
+        
+        <p>
+          Those who refuse to accept the idea of having lost their identity and memories of a past which they will never recall sought solace in the end. Venturing up the mountains that frame the Western Borders of Bridgeworld, they constructed for themselves a sacrificial altar: a beautiful stone monument set atop a mountain overlooking Bridgeworld. There, torn between the understanding that they are needed for the survival of their new world and the resentment of losing their old, they find solace in knowing they need not belong to either and so spill their blood. A blood brimming with power...
+        </p>
+      </div>
+    </article>
+
+    <article class="chapter" id="origins">
+      <h2>II. Origins</h2>
+      <p class="chapter-author">By Andiamo</p>
+      
+      <div class="lore-text">
+        <p>
+          Have you ever stopped to wonder how it could be possible that one individual word, a tiny utterance, could change the outcomes of events so significantly that they cascade into world-changing consequences?
+        </p>
+        
+        <p>
+          Quantum physicists have for decades looked at the possibilities of the existence of a multiverse, as one of the potential ways of explaining phenomena that defy the very fundamentals of Newtonian mechanics.
+        </p>
+        
+        <p>
+          It's as if a couple of programmers came together and wrote multiple versions of code, ostensibly to do the same thing and create a sort of metaverse, but because the underlying syntax was all different, when you got to the nitty gritty bits of trying to understand how things work, the logic that sat at the surface just... falls apart.
+        </p>
+        
+        <p>
+          Nothing makes sense if you think about it properly. Someone's messing with us.
+        </p>
+      </div>
+      
+      <div class="dialogue">
+        <p><em>"It seems like we have a potential situation on timeline 0x742016."</em></p>
+        
+        <p><em>"Do not be hasty, my brother. As you shall learn in time, these musings often fall short of the epiphanies required to discern our existence."</em></p>
+        
+        <p><em>"Has the existence of Bridgeworld ever been discerned by them?"</em></p>
+        
+        <p><em>"The Origin Enclave has watched upon the Bridgeworld since the beginning of time, as we are doing now. From the outside, we are nothing: a dimension in perpetual stasis, where time as they understand does not pass."</em></p>
+        
+        <p><em>"But we experience time, don't we?"</em></p>
+        
+        <p><em>"Indeed we do, but what is time but a point on a defined continuum? Our continuum is infinite in all dimensions, so why do we need time?"</em></p>
+        
+        <p><em>"You speak rightly, young one. It is at those times when the Legions are called upon to intervene, for a great disorder will befall all of these worlds if the Bridgeworld is discerned."</em></p>
+        
+        <p><em>"The Legions guide, govern and protect the Bridgeworld. For those who do not understand, their abilities are thought to be Magic. And so we allow it to be termed, for it is beyond the comprehension of many. The Legions leave in their wake legends, myths and relics — sometimes as rewards, sometimes as gifts and sometimes as warnings."</em></p>
+      </div>
+    </article>
+
+    <article class="chapter" id="atlas-mine">
+      <h2>III. The Atlas Mine</h2>
+      <p class="chapter-author">By Rickard</p>
+      
+      <div class="lore-text">
+        <p>
+          There are a great many wonders on Bridgeworld, flaming monsters of machines that can level mountains or dig lakes. Beasts of unimaginable strength and animals of beauty which cannot be equalled. There are great forges and temples, waterfalls and mountains, rivers and ravines.
+        </p>
+        
+        <blockquote>
+          But none is equal to the Atlas Mine.
+        </blockquote>
+        
+        <p>
+          A network of tunnels so endless it's believed there is more surface area within the mine than on the surface of Bridgeworld itself. There are thousands upon thousands of entrances with vast canyons and underground rivers that dot the mine.
+        </p>
+        
+        <p>
+          Ancient forests of stone spires and spikes can be found, and caverns of crystal and gems. Ancient cities long abandoned lie hidden in the deep of the Atlas Mine.
+        </p>
+        
+        <p>
+          But there is danger here as well - great beasts of immense strength, silent killers who leave no trace, ancient traps and remnants of dark magic. All can be found in the Atlas Mine.
+        </p>
+        
+        <p>
+          But worry not, for one by one the tunnels are secured. Level by level, Questers clear a path for the miners to use.
+        </p>
+        
+        <blockquote>
+          But never underestimate the Atlas Mine.
+        </blockquote>
+        
+        <p style="margin-top: 2rem; color: var(--night-400); font-style: italic; font-size: 0.9rem;">
+          <em>Note: The Atlas Mine has been sunsetted as part of <a href="https://gov.treasure.lol/discussion/8902-tip23-atlas-mine-cataclysm-sunset" target="_blank" rel="noopener noreferrer" style="color: var(--honey-400);">TIP-23</a> as of January 2023.</em>
+        </p>
+      </div>
+    </article>
+
+    <article class="chapter" id="legions">
+      <h2>IV. The Legions</h2>
+      <p class="chapter-author">From the Archives</p>
+      
+      <div class="lore-text">
+        <p>
+          The Legions guide, govern and protect the Bridgeworld. For those who do not understand, their abilities are thought to be Magic.
+        </p>
+        
+        <p>
+          A few months up to about a year before the first moments of the game take place there was a widespread portal event which brought many Genesis Legions to Bridgeworld. Individual legions like the five Origin Legions are said to have arrived much earlier and soon after the All-Class Legions appeared.
+        </p>
+        
+        <p>
+          No known portal event has ever been as widespread as the incident which brought the majority of the genesis legions to Bridgeworld.
+        </p>
+        
+        <p>
+          Prior to the first moments of the game, a population of thousands of Legions exist on Bridgeworld. These Genesis Legions built the foundation of a city from scrap metal and Dragon wood. They centered the city around the crafting hub also known as The Forge.
+        </p>
+        
+        <h3 style="color: var(--honey-400); margin: 2rem 0 1rem;">The Origin Legions</h3>
+        <ul style="color: var(--night-200); margin-left: 2rem;">
+          <li><strong>Bombmaker</strong> - Master of explosive arts</li>
+          <li><strong>Dreamwinder</strong> - Walker between realms</li>
+          <li><strong>Clocksnatcher</strong> - Manipulator of time</li>
+          <li><strong>Fallen</strong> - The corrupted one</li>
+          <li><strong>Warlock</strong> - Wielder of dark magic</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="chapter" id="harvesters">
+      <h2>V. The Harvesters</h2>
+      <p class="chapter-author">From the Archives</p>
+      
+      <div class="lore-text">
+        <p>
+          Early investigations of the harvesters have indicated that some of the ancient machinery could be repaired and utilized to extract magic at a very rapid pace.
+        </p>
+        
+        <p>
+          The intricacy and the delicate nature of the parts necessary to repair the harvesters mean greatly experienced crafters and metalworkers are required, something which there is a great shortage of.
+        </p>
+        
+        <p>
+          There are ongoing investigations regarding the center of the Atlas Rift but the magic emanating from the center is far too intense for any Legion to go anywhere near. Even miles away it can become overwhelming - however if you approach from underground the forceful magic emanations are lessened but not eliminated.
+        </p>
+        
+        <h3 style="color: var(--honey-400); margin: 2rem 0 1rem;">Known Harvesters</h3>
+        <ul style="color: var(--night-200); margin-left: 2rem;">
+          <li><strong>Shinoba</strong> - The shadow harvester</li>
+          <li><strong>Kameji</strong> - The ancient one</li>
+          <li><strong>Asiterra</strong> - The earth keeper</li>
+        </ul>
+      </div>
+    </article>
+
+    <a href="index.html" class="back-link">← Return to Bridgeworld</a>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      bridgeworld.lol | Lore from <a href="https://docs.bridgeworld.treasure.lol">Bridgeworld Docs</a> | Powered by <a href="https://treasure.lol">Treasure</a>
+    </p>
+  </footer>
+</body>
+</html>

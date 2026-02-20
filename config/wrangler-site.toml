@@ -1,0 +1,24 @@
+name = "bridgeworld-site"
+main = "site-worker.js"
+compatibility_date = "2024-12-01"
+account_id = "7e40a8af4a6129833c1cb6f5bcbfd662"
+
+# Content page routes — more specific than the catch-all bridgeworld.lol/*
+routes = [
+  { pattern = "bridgeworld.lol", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/lore", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/gameplay", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/ecosystem", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/bridge", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/covenant", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/connect", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/js/*", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/img/*", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/manifest/*", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/robots.txt", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/sitemap.xml", zone_name = "bridgeworld.lol" },
+]
+
+kv_namespaces = [
+  { binding = "SITE_KV", id = "cef2bee430064820980642855f32d15c" }
+]

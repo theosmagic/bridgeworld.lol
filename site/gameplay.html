@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gameplay Guide - Bridgeworld | How to Play</title>
+  <meta name="description" content="Learn how to play Bridgeworld - Complete guide to Harvesters, Legion Classes, Metabolic Boosters, Questing, Crafting, and game mechanics.">
+  <meta name="keywords" content="Bridgeworld gameplay, how to play Bridgeworld, Harvesters guide, Legion classes, Metabolic boosters, Treasure game guide">
+  <meta name="author" content="Bridgeworld">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bridgeworld.lol/gameplay.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://bridgeworld.lol/gameplay.html">
+  <meta property="og:title" content="Gameplay Guide - Bridgeworld">
+  <meta property="og:description" content="Complete guide to playing Bridgeworld. Learn about Harvesters, Legion Classes, Metabolic Boosters, and all game mechanics.">
+  <meta property="og:image" content="https://bridgeworld.lol/img/Bridgeworld_Game_Background.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Bridgeworld">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://bridgeworld.lol/gameplay.html">
+  <meta name="twitter:title" content="Gameplay Guide - Bridgeworld">
+  <meta name="twitter:description" content="Complete guide to playing Bridgeworld. Learn about Harvesters, Legion Classes, and game mechanics.">
+  <meta name="twitter:image" content="https://bridgeworld.lol/img/Bridgeworld_Game_Background.webp">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="img/icons/Magic.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icons/Magic.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --night-100: #FAFAFA;
+      --night-200: #E7E8E9;
+      --night-400: #9A9BA1;
+      --night-700: #404652;
+      --night-1100: #131D2E;
+      --night-1200: #0D1420;
+      --night-1300: #0A111C;
+      --ruby-600: #DC2626;
+      --honey-400: #FBBF24;
+      --green-500: #22C55E;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--night-1300);
+      color: var(--night-100);
+      line-height: 1.7;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 17, 28, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--night-700);
+      padding: 1rem 2rem;
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo { height: 40px; }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--night-200);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover { color: var(--honey-400); }
+    
+    @media (max-width: 768px) { .nav-links { display: none; } }
+    
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, var(--honey-400), var(--ruby-600));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--night-400);
+      margin-bottom: 3rem;
+    }
+    
+    .section {
+      margin-bottom: 4rem;
+    }
+    
+    .section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--ruby-600);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--night-700);
+    }
+    
+    .section h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--honey-400);
+      margin: 2rem 0 1rem;
+    }
+    
+    .section p {
+      color: var(--night-200);
+      margin-bottom: 1rem;
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .card {
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    
+    .card:hover {
+      border-color: var(--honey-400);
+    }
+    
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--night-400);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--night-700);
+    }
+    
+    th {
+      background: var(--night-1100);
+      color: var(--honey-400);
+      font-weight: 600;
+    }
+    
+    td {
+      color: var(--night-200);
+    }
+    
+    tr:hover td {
+      background: var(--night-1200);
+    }
+    
+    .status-rip {
+      color: var(--ruby-600);
+      font-weight: 600;
+    }
+    
+    .status-active {
+      color: var(--green-500);
+      font-weight: 600;
+    }
+    
+    .info-box {
+      background: var(--night-1100);
+      border-left: 4px solid var(--honey-400);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .info-box p {
+      margin-bottom: 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      margin-right: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .btn-ruby {
+      background-color: var(--ruby-600);
+      color: white;
+    }
+    
+    .btn-ruby:hover {
+      background-color: #C62222;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--night-700);
+      color: var(--night-100);
+    }
+    
+    .btn-outline:hover {
+      background: var(--night-1100);
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--honey-400);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      background: var(--night-1300);
+      border-top: 1px solid var(--night-700);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-text {
+      color: var(--night-700);
+      font-size: 0.875rem;
+    }
+    
+    .footer-text a {
+      color: var(--honey-400);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html"><img src="img/logo-bw.svg" alt="Bridgeworld" class="nav-logo"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#atlas">Atlas Mine</a></li>
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="gameplay.html">Gameplay</a></li>
+        <li><a href="https://discord.gg/treasuredao" target="_blank">Discord</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Gameplay Guide</h1>
+    <p class="subtitle">Master the mechanics of Bridgeworld</p>
+    
+    <!-- Overview -->
+    <section class="section">
+      <h2>Game Overview</h2>
+      <p>Bridgeworld is a strategy game of resource management, exploration, and coordination. Players control Legions to quest, craft, and harvest MAGIC from Harvesters.</p>
+      
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">&#9876;</div>
+          <div class="card-title">Legions</div>
+          <div class="card-desc">Your characters in Bridgeworld. Train them, send them on quests, and stake them in Harvesters.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128142;</div>
+          <div class="card-title">Treasures</div>
+          <div class="card-desc">Collectible items with various rarities. Used for crafting and boosting Harvesters.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128293;</div>
+          <div class="card-title">Crafting</div>
+          <div class="card-desc">Use the Forge to create consumables and treasures from gathered materials.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#127775;</div>
+          <div class="card-title">Harvesters</div>
+          <div class="card-desc">Colossal creatures that produce MAGIC. Stake permits and MAGIC to earn rewards.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Harvesters -->
+    <section class="section">
+      <h2>Harvesters</h2>
+      <p>Harvesters are colossal creatures from Bridgeworld that bestow MAGIC rewards to those who earn their favor. Players compete in games to gain access and stake MAGIC in Harvesters.</p>
+      
+      <div class="info-box">
+        <p><strong>Key Mechanic:</strong> Harvesters compete against each other in producing MAGIC. The better fed and maintained they are, the more MAGIC they pull away from other Harvesters.</p>
+      </div>
+      
+      <h3>Harvester Status</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Harvester</th>
+            <th>Status</th>
+            <th>Max Permits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lupus Magus (Bridgeworld)</td>
+            <td class="status-active">ACTIVE</td>
+            <td>1,500 Atlas Permits (soulbound)</td>
+          </tr>
+          <tr>
+            <td>Emerion (Beacon)</td>
+            <td class="status-active">ACTIVE</td>
+            <td>3,000 Emerion Permits</td>
+          </tr>
+          <tr>
+            <td>Thundermane (KotE)</td>
+            <td class="status-active">ACTIVE</td>
+            <td>3,000 Thundermane Permits</td>
+          </tr>
+          <tr>
+            <td>Emberwing (Zeeverse)</td>
+            <td class="status-active">ACTIVE</td>
+            <td>3,000 Emberwing Permits</td>
+          </tr>
+          <tr>
+            <td>Shinoba</td>
+            <td class="status-rip">DESTROYED</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Asiterra</td>
+            <td class="status-rip">DESTROYED</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Kameji</td>
+            <td class="status-rip">DESTROYED</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Afarit</td>
+            <td class="status-rip">DESTROYED</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>MAGIC Utilization Boost</h3>
+      <p>Harvesters only produce MAGIC after the staked amount reaches 5% of capacity. Emissions increase at each 10% interval:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Utilization</th>
+            <th>MAGIC Required</th>
+            <th>Emissions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Less than 5%</td><td>&lt; 300k</td><td>0%</td></tr>
+          <tr><td>5% - 10%</td><td>300k - 600k</td><td>20%</td></tr>
+          <tr><td>10% - 20%</td><td>600k - 1.2M</td><td>30%</td></tr>
+          <tr><td>20% - 30%</td><td>1.2M - 1.8M</td><td>40%</td></tr>
+          <tr><td>30% - 40%</td><td>1.8M - 2.4M</td><td>50%</td></tr>
+          <tr><td>40% - 50%</td><td>2.4M - 3M</td><td>60%</td></tr>
+          <tr><td>50% - 60%</td><td>3M - 3.6M</td><td>70%</td></tr>
+          <tr><td>60% - 70%</td><td>3.6M - 4.2M</td><td>80%</td></tr>
+          <tr><td>70% - 80%</td><td>4.2M - 4.8M</td><td>90%</td></tr>
+          <tr><td>Above 80%</td><td>&gt; 4.8M</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Legions -->
+    <section class="section">
+      <h2>Legion Classes</h2>
+      <p>Each Legion has a weight class. A tonnage limit of 220kg per wallet applies to Legions staked in Harvesters.</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Legion Class</th>
+            <th>Boost</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Genesis 1/1</td><td>600%</td><td>120 kg</td></tr>
+          <tr><td>Genesis All Class</td><td>200%</td><td>40 kg</td></tr>
+          <tr><td>Genesis Uncommon</td><td>100%</td><td>21 kg</td></tr>
+          <tr><td>Genesis Special</td><td>75%</td><td>16 kg</td></tr>
+          <tr><td>Genesis Common</td><td>50%</td><td>11 kg</td></tr>
+          <tr><td>Auxiliary Rare</td><td>25%</td><td>5.5 kg</td></tr>
+          <tr><td>Auxiliary Uncommon</td><td>10%</td><td>4 kg</td></tr>
+          <tr><td>Auxiliary Common</td><td>5%</td><td>2.5 kg</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Metabolic Boosters -->
+    <section class="section">
+      <h2>Metabolic Boosters</h2>
+      <p>Boosters amplify a Harvester's ability to produce MAGIC. They are consumed after use and can be stacked (up to 10).</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Booster Type</th>
+            <th>Boost</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Small Metabolic Booster</td><td>20%</td><td>3 hours</td></tr>
+          <tr><td>Medium Metabolic Booster</td><td>25%</td><td>3 hours</td></tr>
+          <tr><td>Large Metabolic Booster</td><td>30%</td><td>3 hours</td></tr>
+          <tr><td>Durable Booster</td><td>20%</td><td>4 hours</td></tr>
+          <tr><td>Anabolic Booster</td><td>40%</td><td>2 hours</td></tr>
+          <tr><td>Overclocked Booster</td><td>90%</td><td>1 hour</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Links -->
+    <section class="section">
+      <h2>Start Playing</h2>
+      <p>Ready to enter Bridgeworld? Here are the essential links:</p>
+      
+      <a href="https://bridgeworld.treasure.lol/map" class="btn btn-ruby">Enter Bridgeworld</a>
+      <a href="https://bridgeworld.treasure.lol/harvesters/all" class="btn btn-outline">View Harvesters</a>
+      <a href="https://docs.treasure.lol" class="btn btn-outline">Full Documentation</a>
+    </section>
+
+    <a href="index.html" class="back-link">← Return to Bridgeworld</a>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      bridgeworld.lol | Docs from <a href="https://docs.bridgeworld.treasure.lol">Bridgeworld Docs</a> | Powered by <a href="https://treasure.lol">Treasure</a>
+    </p>
+  </footer>
+</body>
+</html>

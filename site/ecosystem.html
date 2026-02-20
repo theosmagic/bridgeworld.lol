@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasure Ecosystem | Bridgeworld</title>
+  <meta name="description" content="Explore the complete Treasure ecosystem - 64+ repositories, SDKs, tools, and integrations">
+  <link rel="icon" href="img/icons/Magic.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --night-100: #FAFAFA;
+      --night-200: #E7E8E9;
+      --night-400: #9A9BA1;
+      --night-700: #404652;
+      --night-800: #1F2D45;
+      --night-900: #19253A;
+      --night-1000: #172135;
+      --night-1100: #131D2E;
+      --night-1200: #0D1420;
+      --night-1300: #0A111C;
+      --ruby-500: #EF4444;
+      --ruby-600: #DC2626;
+      --ruby-900: #DC2626;
+      --honey-400: #FBBF24;
+      --honey-900: #FBD881;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--night-1300);
+      color: var(--night-100);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 17, 28, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--night-700);
+      padding: 1rem 2rem;
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo { height: 40px; }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--night-200);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--honey-400);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+    
+    main {
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--night-1300) 0%, var(--night-1200) 100%);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--honey-400), var(--ruby-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--night-400);
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--honey-400);
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--night-400);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--night-100);
+    }
+    
+    .section-subtitle {
+      color: var(--night-400);
+      margin-bottom: 2rem;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .category-card {
+      background: var(--night-1100);
+      border: 1px solid var(--night-700);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.2s;
+    }
+    
+    .category-card:hover {
+      background: var(--night-1000);
+      border-color: var(--honey-400);
+      transform: translateY(-4px);
+    }
+    
+    .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .category-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--night-100);
+    }
+    
+    .category-count {
+      color: var(--honey-400);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .category-desc {
+      color: var(--night-400);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .repo-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .repo-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--night-700);
+      font-size: 0.85rem;
+    }
+    
+    .repo-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .repo-list a {
+      color: var(--night-200);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .repo-list a:hover {
+      color: var(--honey-400);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .btn-ruby {
+      background-color: var(--ruby-900);
+      color: white;
+    }
+    
+    .btn-ruby:hover {
+      background-color: #C62222;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--night-700);
+      color: var(--night-100);
+    }
+    
+    .btn-outline:hover {
+      background: var(--night-1100);
+    }
+    
+    footer {
+      background: var(--night-1300);
+      border-top: 1px solid var(--night-700);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-text {
+      color: var(--night-700);
+      font-size: 0.875rem;
+    }
+    
+    .footer-text a {
+      color: var(--honey-400);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <img src="img/logo-bw.svg" alt="Bridgeworld" class="nav-logo">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="gameplay.html">Gameplay</a></li>
+        <li><a href="ecosystem.html" class="active">Ecosystem</a></li>
+        <li><a href="covenant.html">Covenant</a></li>
+        <li><a href="connect.html">Connect</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-section">
+      <h1>Treasure Ecosystem</h1>
+      <p class="subtitle">
+        A complete decentralized gaming ecosystem with 64+ repositories, SDKs, tools, and integrations.
+        Built on Arbitrum, powered by MAGIC.
+      </p>
+      
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">64+</div>
+          <div class="stat-label">Repositories</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Game SDKs</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Smart Contracts</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Possibilities</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- The map -->
+      <section>
+        <h2 class="section-title">The map</h2>
+        <p class="section-subtitle">WalletConnect Kit = global chain network connector (user + agent). Single plug-and-play → MetaMask&#123;Safe&#125; (MetaMask + Safe + agent). Connect into it:</p>
+        <div class="category-grid" style="margin-bottom: 2rem;">
+          <div class="category-card">
+            <div class="category-icon">🔍</div>
+            <h3 class="category-title">Explorers &amp; data</h3>
+            <p class="category-desc">Blockscout · OpenSea · Magic Eden</p>
+            <ul class="repo-list">
+              <li><a href="https://blockscout.com" target="_blank">Blockscout</a> — on-chain truth, monitoring</li>
+              <li><a href="https://opensea.io" target="_blank">OpenSea</a> — NFT marketplace</li>
+              <li><a href="https://magiceden.io" target="_blank">Magic Eden</a> — NFT / gaming marketplace</li>
+            </ul>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">🪙</div>
+            <h3 class="category-title">Tokens &amp; ecosystems</h3>
+            <p class="category-desc">MAGIC · SAND · MANA · ILLUVIUM · Ready Player Me</p>
+            <ul class="repo-list">
+              <li><strong>MAGIC</strong> — Treasure, Bridgeworld</li>
+              <li><strong>SAND</strong> — The Sandbox</li>
+              <li><strong>MANA</strong> — Decentraland</li>
+              <li><strong>ILLUVIUM</strong> — gaming</li>
+              <li><a href="https://readyplayer.me" target="_blank">Ready Player Me</a> — avatar / identity across games &amp; metaverse</li>
+            </ul>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">⛓️</div>
+            <h3 class="category-title">Chains, oracle, swap, bridge</h3>
+            <p class="category-desc">Chainlist · Chainlink · Magicswap · Uniswap · ENS · Ethers.js · Allbridge</p>
+            <ul class="repo-list">
+              <li><a href="https://chainlist.org" target="_blank">Chainlist</a> — chain list &amp; RPC endpoints</li>
+              <li><a href="https://chain.link" target="_blank">Chainlink</a> — oracle &amp; automation</li>
+              <li><a href="https://github.com/TreasureProject/magicswap-contracts" target="_blank">Magicswap</a> — Treasure DEX, MAGIC &amp; tokens</li>
+              <li><a href="https://uniswap.org" target="_blank">Uniswap</a> — DEX, liquidity, swaps</li>
+              <li><a href="https://ens.domains" target="_blank">ENS</a> — name resolution (e.g. theosmagic.uni.eth)</li>
+              <li><a href="https://docs.ethers.org" target="_blank">Ethers.js</a> — library for providers, signers, contracts</li>
+              <li><a href="https://allbridge.io" target="_blank">Allbridge</a> — cross-chain bridge</li>
+            </ul>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">📦</div>
+            <h3 class="category-title">Portfolio &amp; activity</h3>
+            <p class="category-desc">Round up the chaos across chains</p>
+            <ul class="repo-list">
+              <li><a href="https://zapper.xyz" target="_blank">Zapper</a> — Bundle wallets, Apps/DeFi, NFTs, Activity (filter by protocol/chain); check Hidden</li>
+              <li><a href="https://debank.com" target="_blank">DeBank</a> — Cross-reference for obscure tokens &amp; dust</li>
+              <li>Breadcrumbs: tx hashes, withdrawal emails → find forgotten addresses</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Infrastructure -->
+      <section>
+        <h2 class="section-title">Core Infrastructure</h2>
+        <p class="section-subtitle">The foundation of the Treasure ecosystem</p>
+        
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-icon">📜</div>
+            <h3 class="category-title">Smart Contracts</h3>
+            <div class="category-count">Priority 1 • 5 repos</div>
+            <p class="category-desc">Core marketplace, governance, and staking contracts</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/treasure-marketplace-contracts" target="_blank">treasure-marketplace-contracts</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-project-contracts" target="_blank">treasure-project-contracts</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-governance-staking" target="_blank">treasure-governance-staking</a></li>
+              <li><a href="https://github.com/TreasureProject/magicswap-contracts" target="_blank">magicswap-contracts</a></li>
+              <li><a href="https://github.com/TreasureProject/magicswapv2-contracts" target="_blank">magicswapv2-contracts</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🎮</div>
+            <h3 class="category-title">Game SDKs</h3>
+            <div class="category-count">Priority 1 • 4 repos</div>
+            <p class="category-desc">Development kits for Unity, Godot, Unreal, and JavaScript</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/tdk-js" target="_blank">tdk-js (JavaScript/TypeScript)</a></li>
+              <li><a href="https://github.com/TreasureProject/tdk-unity" target="_blank">tdk-unity (Unity)</a></li>
+              <li><a href="https://github.com/TreasureProject/tdk-godot" target="_blank">tdk-godot (Godot)</a></li>
+              <li><a href="https://github.com/TreasureProject/tdk-unreal" target="_blank">tdk-unreal (Unreal Engine)</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🕹️</div>
+            <h3 class="category-title">CoinWeb + Arbitrum + Godot</h3>
+            <div class="category-count">Priority 1 • Integration</div>
+            <p class="category-desc">Game-native Web3 stack: CoinWeb wallet + Arbitrum chain + Godot engine.</p>
+            <ul class="repo-list">
+              <li>CoinWeb (wallet + transactions)</li>
+              <li><a href="https://arbitrum.io" target="_blank">Arbitrum One (chainId 42161)</a></li>
+              <li><a href="https://godotengine.org" target="_blank">Godot Engine (client)</a></li>
+              <li><a href="https://github.com/TreasureProject/tdk-godot" target="_blank">tdk-godot (Treasure SDK)</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🛠️</div>
+            <h3 class="category-title">Godot Web3 foundations (advanced)</h3>
+            <div class="category-count">Godot-as-base • Multiple stacks</div>
+            <p class="category-desc">Advanced options using Godot as base: Thirdweb/Smart Wallets, Base Names, on-chain GDScript, C++/Polygon.</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/penseurai/godotblockchain" target="_blank">godotblockchain (Thirdweb .NET, NFTs/GLB)</a></li>
+              <li><a href="https://www.basekit.info" target="_blank">BaseKit (Base Names, GDScript)</a></li>
+              <li><a href="https://forum.godotengine.org/t/gdscript-supports-the-development-of-fully-on-chain-games-and-gamefi/102731" target="_blank">GDScript fully on-chain / GameFi</a></li>
+              <li><a href="https://godotengine.org/asset-library/asset/3396" target="_blank">blockchain_sdk (Asset Library)</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🔗</div>
+            <h3 class="category-title">Chain Infrastructure</h3>
+            <div class="category-count">Priority 1 • 4 repos</div>
+            <p class="category-desc">Node, subgraphs, and chain-level tools</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/treasure-node" target="_blank">treasure-node</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-subgraphs" target="_blank">treasure-subgraphs</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-functions" target="_blank">treasure-functions</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-chain-examples" target="_blank">treasure-chain-examples</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trading & Marketplace -->
+      <section>
+        <h2 class="section-title">Trading & Marketplace</h2>
+        <p class="section-subtitle">DEX, marketplace, and trading tools</p>
+        
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-icon">💎</div>
+            <h3 class="category-title">Marketplace</h3>
+            <div class="category-count">Priority 2 • 4 repos</div>
+            <p class="category-desc">NFT marketplace and trading platforms</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/treasure-marketplace-subgraph" target="_blank">treasure-marketplace-subgraph</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-canary" target="_blank">treasure-canary</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-website" target="_blank">treasure-website</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-form" target="_blank">treasure-form</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🔄</div>
+            <h3 class="category-title">DEX (MagicSwap)</h3>
+            <div class="category-count">Priority 2 • 3 repos</div>
+            <p class="category-desc">Decentralized exchange for MAGIC and tokens</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/magicswap" target="_blank">magicswap</a></li>
+              <li><a href="https://github.com/TreasureProject/magicswapv2" target="_blank">magicswapv2</a></li>
+              <li><a href="https://github.com/TreasureProject/legiondex" target="_blank">legiondex</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI & Automation -->
+      <section>
+        <h2 class="section-title">AI & Automation</h2>
+        <p class="section-subtitle">AI agents and automation tools</p>
+        
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-icon">🤖</div>
+            <h3 class="category-title">X402 Framework</h3>
+            <div class="category-count">Priority 1 • 3 repos</div>
+            <p class="category-desc">AI agent framework for autonomous operations</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/x402" target="_blank">x402 (Core framework)</a></li>
+              <li><a href="https://github.com/TreasureProject/x402facilitators" target="_blank">x402facilitators</a></li>
+              <li><a href="https://github.com/TreasureProject/x402scan" target="_blank">x402scan</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🧠</div>
+            <h3 class="category-title">AI Tools</h3>
+            <div class="category-count">Priority 1-2 • 3 repos</div>
+            <p class="category-desc">AI agents, LLMs, and automation</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/llm-tee-agent" target="_blank">llm-tee-agent</a></li>
+              <li><a href="https://github.com/TreasureProject/aifrens-sdk" target="_blank">aifrens-sdk</a></li>
+              <li><a href="https://github.com/TreasureProject/python-robot" target="_blank">python-robot</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bridgeworld -->
+      <section>
+        <h2 class="section-title">Bridgeworld</h2>
+        <p class="section-subtitle">The center of the multiverse</p>
+        
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-icon">🌉</div>
+            <h3 class="category-title">Bridgeworld Resources</h3>
+            <div class="category-count">Priority 1-2 • 3 repos</div>
+            <p class="category-desc">Lore, documentation, and game repos</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/bridgeworld-docs" target="_blank">bridgeworld-docs (125 files)</a></li>
+              <li><a href="https://github.com/TreasureProject/Golem" target="_blank">Golem</a></li>
+              <li><a href="https://github.com/TreasureProject/Rio" target="_blank">Rio</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interoperability -->
+      <section>
+        <h2 class="section-title">Interoperability</h2>
+        <p class="section-subtitle">Cross-chain bridges and integrations</p>
+        
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-icon">🌐</div>
+            <h3 class="category-title">Hyperlane</h3>
+            <div class="category-count">Priority 2 • 4 repos</div>
+            <p class="category-desc">Cross-chain messaging and token warps</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/hyperlane-registry" target="_blank">hyperlane-registry</a></li>
+              <li><a href="https://github.com/TreasureProject/hyperlane-warp-ui" target="_blank">hyperlane-warp-ui</a></li>
+              <li><a href="https://github.com/TreasureProject/hyperlane-warp-ui-smol" target="_blank">hyperlane-warp-ui-smol</a></li>
+              <li><a href="https://github.com/TreasureProject/hyperlane-example" target="_blank">hyperlane-example</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🔗</div>
+            <h3 class="category-title">Bridge Tools</h3>
+            <div class="category-count">Priority 2 • 4 repos</div>
+            <p class="category-desc">LayerZero, zkStack, and restaking</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/LayerZero-v2" target="_blank">LayerZero-v2</a></li>
+              <li><a href="https://github.com/TreasureProject/zkstack-omnichain-tokens" target="_blank">zkstack-omnichain-tokens</a></li>
+              <li><a href="https://github.com/TreasureProject/bridging-token-registry" target="_blank">bridging-token-registry</a></li>
+              <li><a href="https://github.com/TreasureProject/L2-eigenlayer-restaking" target="_blank">L2-eigenlayer-restaking</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Developer Tools -->
+      <section>
+        <h2 class="section-title">Developer Tools</h2>
+        <p class="section-subtitle">Templates, configs, and utilities</p>
+        
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-icon">🛠️</div>
+            <h3 class="category-title">Dev Tools</h3>
+            <div class="category-count">Priority 2-3 • 5 repos</div>
+            <p class="category-desc">UI libraries, templates, and build tools</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/interface" target="_blank">interface</a></li>
+              <li><a href="https://github.com/TreasureProject/connectkit" target="_blank">connectkit</a></li>
+              <li><a href="https://github.com/TreasureProject/web3-starter-template" target="_blank">web3-starter-template</a></li>
+              <li><a href="https://github.com/TreasureProject/build-uploader" target="_blank">build-uploader</a></li>
+              <li><a href="https://github.com/TreasureProject/tailwind-config" target="_blank">tailwind-config</a></li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">📚</div>
+            <h3 class="category-title">Documentation</h3>
+            <div class="category-count">Priority 2-3 • 3 repos</div>
+            <p class="category-desc">Docs, branding, and assets</p>
+            <ul class="repo-list">
+              <li><a href="https://github.com/TreasureProject/treasure-docs" target="_blank">treasure-docs</a></li>
+              <li><a href="https://github.com/TreasureProject/branding" target="_blank">branding</a></li>
+              <li><a href="https://github.com/TreasureProject/treasure-website-team-images" target="_blank">treasure-website-team-images</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section style="text-align: center; padding: 4rem 0;">
+        <h2 class="section-title">Start Building</h2>
+        <p class="section-subtitle">Join the Treasure ecosystem and build the future of decentralized gaming</p>
+        <a href="https://docs.treasure.lol" class="btn btn-ruby" target="_blank">Read the Docs</a>
+        <a href="https://github.com/TreasureProject" class="btn btn-outline" target="_blank">View on GitHub</a>
+        <a href="connect.html" class="btn btn-outline">Connect Wallet</a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      bridgeworld.lol | Powered by <a href="https://treasure.lol" target="_blank">Treasure</a><br>
+      64+ repositories • All open source • Built by the community
+    </p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "bridgeworld.lol",
+  "version": "1.0.0",
+  "description": "Bridgeworld.lol — Sovereign Stack. 22 glyph-mapped bots, Diamond proxy, multi-chain Safe, Eternal Covenant.",
+  "private": true,
+  "scripts": {
+    "dev": "npx wrangler dev -c config/wrangler-site.toml",
+    "deploy:site": "npx wrangler deploy -c config/wrangler-site.toml",
+    "deploy:agent": "npx wrangler deploy -c config/wrangler-agent.toml",
+    "upload:kv": "node scripts/upload-kv.js",
+    "validate": "node scripts/validate.js",
+    "build": "echo 'Static site — no build step needed'"
+  },
+  "keywords": ["bridgeworld", "treasure", "magic", "web3", "cloudflare-workers"],
+  "author": "theosmagic <theosmagic.uni.eth@ethermail.io>",
+  "license": "MIT"
+}

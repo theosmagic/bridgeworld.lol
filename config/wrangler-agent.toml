@@ -1,0 +1,36 @@
+name = "bridgeworld-agent"
+main = "agent-worker.js"
+compatibility_date = "2024-12-01"
+account_id = "7e40a8af4a6129833c1cb6f5bcbfd662"
+
+# Routes — agent endpoints on bridgeworld.lol/agent
+routes = [
+  { pattern = "bridgeworld.lol/agent", zone_name = "bridgeworld.lol" },
+  { pattern = "bridgeworld.lol/agent/*", zone_name = "bridgeworld.lol" },
+]
+
+# KV Namespace for caching scan results
+kv_namespaces = [
+  { binding = "AGENT_KV", id = "cef2bee430064820980642855f32d15c" }
+]
+
+# Environment variables (non-secret)
+[vars]
+GITHUB_ORG = "TreasureProject"
+GITHUB_FORK = "theosmagic"
+GITHUB_APP_ID = "2462791"
+
+# Secrets (set via: wrangler secret put <NAME> -c wrangler-agent.toml)
+# ALCHEMY_API_KEY
+# ZAPPER_API_KEY
+# TENDERLY_ACCESS_KEY
+# GITHUB_APP_PEM
+# BRAVE_SEARCH_API
+# MAGIC_LABS_PUBLIC_KEY    (pk_live_...)
+# MAGIC_LABS_SECRET_KEY    (sk_live_...)
+# MAGIC_LABS_ENCRYPTION_CTX
+# MAGIC_LABS_ACCESS_KEY    (= IPFS CID)
+
+# Cron trigger — autonomous scan every 15 minutes
+[triggers]
+crons = ["*/15 * * * *"]
