@@ -10,11 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js" type="text/javascript"></script>
-  <script src="js/signature.js" type="text/javascript"></script>
-  <script src="js/diamond_portal.js" type="text/javascript"></script>
-  <script src="js/b00_fund_transfer.js" type="text/javascript"></script>
-  <script src="js/smart_sessions.js" type="text/javascript"></script>
-  <script src="js/autonomous_capabilities.js" type="text/javascript"></script>
   <script type="module">
     // MetaMask SDK + manifest: same stack as metamask_safe_integration.ts + walletconnect_kit_integration.ts
     window.__MANIFEST_CHAINS__ = {};
@@ -385,7 +380,6 @@
         <li><a href="lore.html">Lore</a></li>
         <li><a href="gameplay.html">Gameplay</a></li>
         <li><a href="ecosystem.html">Ecosystem</a></li>
-        <li><a href="covenant.html">Covenant</a></li>
         <li><a href="connect.html" class="active">Connect</a></li>
       </ul>
     </div>
@@ -395,7 +389,7 @@
     <div class="connect-container">
       <h1>Connect Wallet</h1>
       <p class="subtitle">Choose your wallet to enter Bridgeworld</p>
-      <p class="primary-account">Primary account: theosmagic.uni.eth · sole signer · MetaMask all-in-one; Safe = contract layer for agent/fren</p>
+      <p class="primary-account">Connect your wallet to enter the Bridgeworld ecosystem</p>
 
       <div class="wallet-grid">
         <div class="wallet-button" id="connectMetaMask">
@@ -425,7 +419,7 @@
 
       <div class="status-card" style="margin-top: 2rem; text-align: left;" id="safeCard">
         <h3>Safe&#123;Wallet&#125;</h3>
-        <p class="subtitle" style="margin-bottom: 1rem;">Not a standalone wallet — contract layer for agent/fren wallets. Sole signer: theosmagic.uni.eth. You approve; agent executes on your behalf when relayed. WalletConnect → MetaMask SDK → Safe → Diamond</p>
+        <p class="subtitle" style="margin-bottom: 1rem;">Multi-sig contract wallet for team and protocol operations. WalletConnect → MetaMask SDK → Safe → Diamond</p>
         <input type="text" id="safeAddressInput" placeholder="0x... Safe address" class="safe-input" />
         <button class="btn btn-outline" id="loadSafeBtn">Load Safe</button>
         <div id="safeInfo" class="safe-info"></div>
